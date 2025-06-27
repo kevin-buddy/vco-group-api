@@ -3,6 +3,8 @@ from pydantic import BaseModel, EmailStr, Field
 from fastapi import FastAPI, HTTPException
 from uuid import UUID
 
+from database import MySQL
+
 app = FastAPI()
 
 class Customer(BaseModel):
@@ -15,6 +17,8 @@ customers = []
 
 @app.get("/")
 async def read_root():
+    tmp = MySQL()
+    print(tmp.get_customers())
     return {"Hello": "World"}
 
 # @app.get("/items")
